@@ -4,7 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
 
 <title>Ziyo Test</title>
 
@@ -18,7 +20,6 @@ padding:0;
 box-sizing:border-box;
 font-family:system-ui;
 }
-<script src="app.js"></script>
 
 body{
 
@@ -26,15 +27,15 @@ background:
 linear-gradient(
 135deg,
 #071226,
-#111827,
-#1d4ed8
+#0F172A,
+#2563EB
 );
 
 min-height:100vh;
 
-color:white;
-
 padding:20px;
+
+color:white;
 
 }
 
@@ -43,10 +44,7 @@ padding:20px;
 background:
 rgba(255,255,255,.08);
 
-border:1px solid
-rgba(255,255,255,.1);
-
-backdrop-filter:blur(18px);
+backdrop-filter:blur(20px);
 
 border-radius:28px;
 
@@ -56,7 +54,7 @@ padding:24px;
 
 .logo{
 
-font-size:72px;
+font-size:70px;
 
 text-align:center;
 
@@ -70,7 +68,7 @@ font-size:34px;
 
 font-weight:900;
 
-margin-top:12px;
+margin-top:10px;
 
 }
 
@@ -80,7 +78,7 @@ text-align:center;
 
 opacity:.7;
 
-margin-top:8px;
+margin-top:10px;
 
 }
 
@@ -90,7 +88,7 @@ display:grid;
 
 gap:14px;
 
-margin-top:24px;
+margin-top:25px;
 
 }
 
@@ -110,21 +108,21 @@ color:white;
 
 }
 
-.primary{
+.green{
+
+background:#059669;
+
+}
+
+.blue{
 
 background:#2563EB;
 
 }
 
-.dark{
+.gray{
 
-background:#1E293B;
-
-}
-
-.success{
-
-background:#059669;
+background:#334155;
 
 }
 
@@ -132,7 +130,7 @@ background:#059669;
 
 display:none;
 
-margin-top:20px;
+margin-top:18px;
 
 }
 
@@ -150,12 +148,6 @@ margin-top:12px;
 
 }
 
-.back{
-
-margin-top:12px;
-
-}
-
 </style>
 
 </head>
@@ -165,7 +157,9 @@ margin-top:12px;
 <div class="card">
 
 <div class="logo">
+
 🎓
+
 </div>
 
 <div class="title">
@@ -185,24 +179,24 @@ Online Test Platform
 <div class="grid">
 
 <button
-class="success"
-onclick="openStudent()">
+class="green"
+onclick="show('student')">
 
 👨‍🎓 Talaba
 
 </button>
 
 <button
-class="primary"
-onclick="openAdmin()">
+class="blue"
+onclick="show('admin')">
 
 🛡️ Admin
 
 </button>
 
 <button
-class="dark"
-onclick="openSuper()">
+class="gray"
+onclick="show('super')">
 
 👑 Superadmin
 
@@ -227,17 +221,10 @@ type="password"
 placeholder="Parol">
 
 <button
-class="success">
+class="green"
+onclick="studentRegister()">
 
 Ro‘yxatdan o‘tish
-
-</button>
-
-<button
-class="dark back"
-onclick="back()">
-
-Orqaga
 
 </button>
 
@@ -255,17 +242,10 @@ type="password"
 placeholder="Parol">
 
 <button
-class="primary">
+class="blue"
+onclick="adminLogin()">
 
 Kirish
-
-</button>
-
-<button
-class="dark back"
-onclick="back()">
-
-Orqaga
 
 </button>
 
@@ -285,111 +265,19 @@ type="password"
 placeholder="Parol">
 
 <button
-class="dark"
+class="gray"
 onclick="superLogin()">
 
 Kirish
 
 </button>
 
-<button
-class="dark back"
-onclick="back()">
-
-Orqaga
-
-</button>
-
 </div>
 
 </div>
 
-<script>
-
-Telegram.WebApp.expand();
-
-function hide(){
-
-home.style.display="none";
-
-student.style.display="none";
-
-admin.style.display="none";
-
-super.style.display="none";
-
-}
-
-function openStudent(){
-
-hide();
-
-student.style.display="block";
-
-}
-
-function openAdmin(){
-
-hide();
-
-admin.style.display="block";
-
-}
-
-function openSuper(){
-
-hide();
-
-super.style.display="block";
-
-}
-
-function back(){
-
-student.style.display="none";
-
-admin.style.display="none";
-
-super.style.display="none";
-
-home.style.display="block";
-
-}
-
-function superLogin(){
-
-let l=
-document
-.getElementById("s1")
-.value;
-
-let p=
-document
-.getElementById("s2")
-.value;
-
-if(
-l==="admin"
-&&
-p==="12345"
-){
-
-alert(
-"Superadmin panel tayyor 🚀"
-);
-
-}else{
-
-alert(
-"Login xato ❌"
-);
-
-}
-
-}
-
-</script>
+<script src="app.js"></script>
 
 </body>
 
-  </html>
+</html>
