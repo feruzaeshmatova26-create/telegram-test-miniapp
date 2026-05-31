@@ -22,63 +22,78 @@ body{
 
 background:
 linear-gradient(
-180deg,
-#0b1220,
-#162033
+-45deg,
+#0f172a,
+#1e293b,
+#1d4ed8,
+#0f172a
 );
 
-min-height:100vh;
+background-size:400% 400%;
 
-padding:20px;
+animation:bg 12s ease infinite;
 
 color:white;
 
-}
+min-height:100vh;
 
-.top{
-
-display:flex;
-
-justify-content:space-between;
-
-margin-bottom:20px;
+padding:18px;
 
 }
 
-.badge{
+@keyframes bg{
 
-background:#1f2937;
+0%{background-position:0% 50%}
 
-padding:10px 16px;
+50%{background-position:100% 50%}
 
-border-radius:999px;
+100%{background-position:0% 50%}
 
 }
 
 .card{
 
+backdrop-filter:blur(25px);
+
 background:
+rgba(255,255,255,.08);
 
-linear-gradient(
-180deg,
-#1e293b,
-#172033
-);
+border:1px solid
+rgba(255,255,255,.12);
 
-padding:24px;
+border-radius:30px;
 
-border-radius:28px;
+padding:22px;
 
-box-shadow:
-0 20px 50px rgba(0,0,0,.35);
+margin-top:16px;
 
 }
 
-.logo{
+.hero{
 
-font-size:60px;
+padding:26px;
 
-text-align:center;
+}
+
+.avatar{
+
+width:80px;
+
+height:80px;
+
+border-radius:50%;
+
+background:#2563eb;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:34px;
+
+margin:auto;
 
 }
 
@@ -88,9 +103,9 @@ text-align:center;
 
 font-size:34px;
 
-font-weight:800;
+font-weight:900;
 
-margin-top:12px;
+margin-top:18px;
 
 }
 
@@ -98,23 +113,78 @@ margin-top:12px;
 
 text-align:center;
 
-opacity:.7;
+opacity:.75;
 
 margin-top:8px;
 
 }
 
+.btn{
+
+width:100%;
+
+padding:18px;
+
+border:none;
+
+border-radius:18px;
+
+font-size:18px;
+
+margin-top:24px;
+
+background:
+linear-gradient(
+90deg,
+#2563eb,
+#4f46e5
+);
+
+color:white;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:14px;
+
+margin-top:18px;
+
+}
+
+.box{
+
+background:
+rgba(255,255,255,.06);
+
+padding:18px;
+
+border-radius:18px;
+
+}
+
+.box h2{
+
+font-size:28px;
+
+}
+
 .progress{
 
-margin-top:22px;
+height:12px;
 
-height:10px;
-
-background:#334155;
+background:
+rgba(255,255,255,.1);
 
 border-radius:999px;
 
 overflow:hidden;
+
+margin-top:14px;
 
 }
 
@@ -122,63 +192,56 @@ overflow:hidden;
 
 height:100%;
 
-width:25%;
+width:65%;
 
-background:#3b82f6;
-
-}
-
-.question{
-
-font-size:22px;
-
-margin-top:28px;
-
-font-weight:700;
+background:
+linear-gradient(
+90deg,
+#22c55e,
+#3b82f6
+);
 
 }
 
-.option{
+.rank{
 
-width:100%;
+display:flex;
+
+justify-content:space-between;
 
 padding:18px;
 
 margin-top:14px;
 
-border:none;
+background:
+rgba(255,255,255,.06);
 
 border-radius:18px;
 
-background:#243246;
+}
 
-color:white;
+.categories{
 
-font-size:18px;
+display:flex;
+
+gap:12px;
+
+overflow:auto;
+
+margin-top:14px;
 
 }
 
-.option:active{
+.cat{
 
-transform:scale(.98);
+min-width:120px;
 
-}
+padding:18px;
 
-.result{
+border-radius:18px;
 
-display:none;
-
-text-align:center;
-
-padding:20px;
-
-}
-
-.score{
-
-font-size:60px;
-
-margin-bottom:14px;
+background:
+rgba(255,255,255,.08);
 
 }
 
@@ -188,69 +251,133 @@ margin-bottom:14px;
 
 <body>
 
-<div class="top">
+<div class="card hero">
 
-<div class="badge">
-📝 Test
+<div class="avatar">
+🎓
 </div>
 
-<div class="badge">
-1 / 10
+<div class="title">
+
+ZIYO TEST
+
+</div>
+
+<div class="sub">
+
+Telegram Mini App
+
+</div>
+
+<button
+class="btn"
+onclick="start()">
+
+🚀 Testni boshlash
+
+</button>
+
+</div>
+
+<div class="grid">
+
+<div class="box">
+
+📊
+
+<h2>1280</h2>
+
+Testlar
+
+</div>
+
+<div class="box">
+
+🏆
+
+<h2>97%</h2>
+
+Natija
+
 </div>
 
 </div>
 
 <div class="card">
 
-<div id="quiz">
+<h3>
 
-<div class="logo">
-🚀
-</div>
+Progress
 
-<div class="title">
-ZIYO TEST
-</div>
-
-<div class="sub">
-Bilimingizni sinab ko‘ring
-</div>
+</h3>
 
 <div class="progress">
+
 <div class="fill"></div>
-</div>
-
-<div class="question">
-Android Studio qaysi kompaniyaga tegishli?
-</div>
-
-<button class="option" onclick="finish(true)">
-A • Google
-</button>
-
-<button class="option" onclick="finish(false)">
-B • Apple
-</button>
-
-<button class="option" onclick="finish(false)">
-C • Telegram
-</button>
-
-<button class="option" onclick="finish(false)">
-D • Samsung
-</button>
 
 </div>
 
-<div class="result" id="result">
-
-<div class="score">
-🏆
 </div>
 
-<h2>Natija</h2>
+<div class="card">
 
-<p id="text"></p>
+<h3>
+
+Kategoriyalar
+
+</h3>
+
+<div class="categories">
+
+<div class="cat">
+🤖 AI
+</div>
+
+<div class="cat">
+📱 Android
+</div>
+
+<div class="cat">
+💻 IT
+</div>
+
+<div class="cat">
+📚 Ingliz tili
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+🏅 Reyting
+
+</h3>
+
+<div class="rank">
+
+<span>
+Humoyiddin
+</span>
+
+<span>
+#1
+</span>
+
+</div>
+
+<div class="rank">
+
+<span>
+Foydalanuvchi
+</span>
+
+<span>
+#2
+</span>
 
 </div>
 
@@ -260,18 +387,11 @@ D • Samsung
 
 Telegram.WebApp.expand();
 
-function finish(ok){
+function start(){
 
-quiz.style.display="none";
-
-result.style.display="block";
-
-text.innerHTML=
-ok
-?
-"100 Ball ✅"
-:
-"Qayta urinib ko‘ring ❌";
+alert(
+"Test sahifasi keyingi bosqichda ulanadi 🚀"
+);
 
 }
 
