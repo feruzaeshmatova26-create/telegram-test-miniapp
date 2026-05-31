@@ -10,145 +10,9 @@ content="width=device-width,initial-scale=1">
 
 <title>Ziyo Test</title>
 
+<link rel="stylesheet" href="style.css">
+
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:system-ui;
-}
-
-body{
-
-background:
-linear-gradient(
-135deg,
-#071226,
-#0F172A,
-#2563EB
-);
-
-min-height:100vh;
-
-padding:20px;
-
-color:white;
-
-}
-
-.card{
-
-background:
-rgba(255,255,255,.08);
-
-backdrop-filter:blur(20px);
-
-border-radius:28px;
-
-padding:24px;
-
-}
-
-.logo{
-
-font-size:70px;
-
-text-align:center;
-
-}
-
-.title{
-
-text-align:center;
-
-font-size:34px;
-
-font-weight:900;
-
-margin-top:10px;
-
-}
-
-.sub{
-
-text-align:center;
-
-opacity:.7;
-
-margin-top:10px;
-
-}
-
-.grid{
-
-display:grid;
-
-gap:14px;
-
-margin-top:25px;
-
-}
-
-button{
-
-width:100%;
-
-padding:18px;
-
-border:none;
-
-border-radius:18px;
-
-font-size:18px;
-
-color:white;
-
-}
-
-.green{
-
-background:#059669;
-
-}
-
-.blue{
-
-background:#2563EB;
-
-}
-
-.gray{
-
-background:#334155;
-
-}
-
-.form{
-
-display:none;
-
-margin-top:18px;
-
-}
-
-input{
-
-width:100%;
-
-padding:16px;
-
-border:none;
-
-border-radius:16px;
-
-margin-top:12px;
-
-}
-
-</style>
 
 </head>
 
@@ -157,9 +21,7 @@ margin-top:12px;
 <div class="card">
 
 <div class="logo">
-
 🎓
-
 </div>
 
 <div class="title">
@@ -176,13 +38,37 @@ Online Test Platform
 
 <div id="home">
 
+<div class="stats">
+
+<div class="box">
+
+👨‍🎓
+
+<br><br>
+
+Talaba
+
+</div>
+
+<div class="box">
+
+🛡️
+
+<br><br>
+
+Admin
+
+</div>
+
+</div>
+
 <div class="grid">
 
 <button
 class="green"
 onclick="show('student')">
 
-👨‍🎓 Talaba
+Talaba kirish
 
 </button>
 
@@ -190,7 +76,7 @@ onclick="show('student')">
 class="blue"
 onclick="show('admin')">
 
-🛡️ Admin
+Admin kirish
 
 </button>
 
@@ -198,7 +84,7 @@ onclick="show('admin')">
 class="gray"
 onclick="show('super')">
 
-👑 Superadmin
+Superadmin
 
 </button>
 
@@ -221,8 +107,7 @@ type="password"
 placeholder="Parol">
 
 <button
-class="green"
-onclick="studentRegister()">
+class="green">
 
 Ro‘yxatdan o‘tish
 
@@ -242,8 +127,7 @@ type="password"
 placeholder="Parol">
 
 <button
-class="blue"
-onclick="adminLogin()">
+class="blue">
 
 Kirish
 
@@ -257,16 +141,18 @@ class="form">
 
 <input
 id="s1"
+
 placeholder="Login">
 
 <input
 id="s2"
+
 type="password"
+
 placeholder="Parol">
 
 <button
-class="gray"
-onclick="superLogin()">
+class="gray">
 
 Kirish
 
@@ -276,8 +162,35 @@ Kirish
 
 </div>
 
+<script>
+
+Telegram.WebApp.expand();
+
+function show(id){
+
+home.style.display="none";
+
+student.style.display="none";
+
+admin.style.display="none";
+
+super.style.display="none";
+
+document
+.getElementById(
+id
+)
+.style.display=
+"block";
+
+}
+
+</script>
+
 <script src="app.js"></script>
+
+<script src="tests.js"></script>
 
 </body>
 
-</html>
+  </html>
