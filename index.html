@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="uz">
-<head>
 
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,7 +19,6 @@ font-family:system-ui;
 }
 
 body{
-
 background:
 linear-gradient(
 135deg,
@@ -30,10 +29,9 @@ linear-gradient(
 
 min-height:100vh;
 
-padding:18px;
+padding:20px;
 
 color:white;
-
 }
 
 .card{
@@ -41,49 +39,11 @@ color:white;
 background:
 rgba(255,255,255,.08);
 
-backdrop-filter:blur(20px);
+padding:25px;
 
 border-radius:28px;
 
-padding:24px;
-
-}
-
-.logo{
-
-font-size:60px;
-
-text-align:center;
-
-}
-
-.title{
-
-text-align:center;
-
-font-size:34px;
-
-font-weight:900;
-
-}
-
-.sub{
-
-text-align:center;
-
-opacity:.7;
-
-margin-top:10px;
-
-}
-
-.role{
-
-display:grid;
-
-gap:14px;
-
-margin-top:25px;
+backdrop-filter:blur(20px);
 
 }
 
@@ -97,7 +57,7 @@ border:none;
 
 border-radius:18px;
 
-font-size:18px;
+margin-top:12px;
 
 }
 
@@ -109,10 +69,9 @@ color:white;
 
 }
 
-.secondary{
+.gray{
 
-background:
-rgba(255,255,255,.08);
+background:#334155;
 
 color:white;
 
@@ -138,6 +97,19 @@ display:none;
 
 }
 
+.adminItem{
+
+background:
+rgba(255,255,255,.08);
+
+padding:14px;
+
+margin-top:10px;
+
+border-radius:14px;
+
+}
+
 </style>
 
 </head>
@@ -146,29 +118,13 @@ display:none;
 
 <div class="card">
 
-<div class="logo">
-🎓
-</div>
+<h1>
+🎓 ZIYO TEST
+</h1>
 
-<div class="title">
-ZIYO TEST
-</div>
-
-<div class="sub">
-Online Test Platform
-</div>
+<br>
 
 <div id="home">
-
-<div class="role">
-
-<button
-class="secondary"
-onclick="openStudent()">
-
-👨‍🎓 Talaba
-
-</button>
 
 <button
 class="primary"
@@ -178,36 +134,11 @@ onclick="openAdmin()">
 
 </button>
 
-</div>
-
-</div>
-
-<div
-id="student"
-class="page">
-
-<input placeholder="Ism">
-
-<input placeholder="Telefon">
-
-<input type="password"
-placeholder="Parol">
-
 <button
-class="primary"
-onclick="register()">
+class="gray"
+onclick="alert('Talaba keyin ulanadi')">
 
-Ro‘yxatdan o‘tish
-
-</button>
-
-<br><br>
-
-<button
-class="secondary"
-onclick="back()">
-
-Orqaga
+👨‍🎓 Talaba
 
 </button>
 
@@ -217,7 +148,9 @@ Orqaga
 id="admin"
 class="page">
 
-<input id="login"
+<input
+id="login"
+
 placeholder="Login">
 
 <input
@@ -235,10 +168,8 @@ Kirish
 
 </button>
 
-<br><br>
-
 <button
-class="secondary"
+class="gray"
 onclick="back()">
 
 Orqaga
@@ -253,27 +184,16 @@ Orqaga
 
 Telegram.WebApp.expand();
 
-function hide(){
-
-home.style.display="none";
-
-student.style.display="none";
-
-admin.style.display="none";
-
-}
-
-function openStudent(){
-
-hide();
-
-student.style.display="block";
-
-}
+let admins=
+JSON.parse(
+localStorage.getItem(
+"admins"
+)||"[]"
+);
 
 function openAdmin(){
 
-hide();
+home.style.display="none";
 
 admin.style.display="block";
 
@@ -281,41 +201,96 @@ admin.style.display="block";
 
 function back(){
 
-student.style.display="none";
-
 admin.style.display="none";
 
 home.style.display="block";
 
 }
 
-function register(){
+function login(){
+
+let l=
+loginInput();
+
+let p=
+passwordInput();
+
+if(
+l==="admin"
+&&
+p==="12345"
+){
+
+superPanel();
+
+return;
+
+}
+
+let found=
+admins.find(
+a=>
+a.login===l
+&&
+a.password===p
+);
+
+if(found){
+
+document.body.innerHTML=`
+
+<div class='card'>
+
+<h1>
+
+🛡️ Admin panel
+
+</h1>
+
+<br>
+
+Test yaratish
+<br><br>
+
+<button class='primary'>
+
++ Test qo'shish
+
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
 
 alert(
-"Talaba yaratildi ✅"
+"Login xato ❌"
 );
 
 }
 
-function login(){
+function loginInput(){
 
-let user=
-document
+return document
 .getElementById(
 "login"
 ).value;
 
-let pass=
-document
+}
+
+function passwordInput(){
+
+return document
 .getElementById(
 "password"
 ).value;
 
-if(
-user==="admin"
-&&
-pass==="12345"
-){
+}
+
+function superPanel(){
 
 document.body.innerHTML=`
 
@@ -327,40 +302,91 @@ document.body.innerHTML=`
 
 </h1>
 
-<br>
-
 <input
+id='a1'
 placeholder='Admin login'>
 
 <input
+id='a2'
 placeholder='Parol'>
 
 <button
-class='primary'>
+class='primary'
+onclick='createAdmin()'>
 
 Admin yaratish
 
 </button>
 
-<br><br>
-
-<div>
-
-📊 Statistika
-
-</div>
+<div id='list'></div>
 
 </div>
 
 `;
 
-}else{
-
-alert(
-"Xato login ❌"
-);
+render();
 
 }
+
+function createAdmin(){
+
+let login=
+document
+.getElementById(
+"a1"
+).value;
+
+let password=
+document
+.getElementById(
+"a2"
+).value;
+
+admins.push({
+
+login,
+
+password
+
+});
+
+localStorage
+.setItem(
+"admins",
+JSON.stringify(
+admins
+)
+);
+
+render();
+
+}
+
+function render(){
+
+let html="";
+
+admins.forEach(
+a=>{
+
+html+=`
+
+<div
+class='adminItem'>
+
+🛡️ ${a.login}
+
+</div>
+
+`;
+
+});
+
+document
+.getElementById(
+"list"
+).innerHTML=
+html;
 
 }
 
