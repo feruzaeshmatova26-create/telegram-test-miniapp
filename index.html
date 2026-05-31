@@ -2,6 +2,7 @@
 <html lang="uz">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -22,78 +23,38 @@ body{
 
 background:
 linear-gradient(
--45deg,
-#0f172a,
-#1e293b,
-#1d4ed8,
-#0f172a
+135deg,
+#0F172A,
+#1E293B,
+#2563EB
 );
-
-background-size:400% 400%;
-
-animation:bg 12s ease infinite;
-
-color:white;
 
 min-height:100vh;
 
-padding:18px;
+padding:20px;
 
-}
-
-@keyframes bg{
-
-0%{background-position:0% 50%}
-
-50%{background-position:100% 50%}
-
-100%{background-position:0% 50%}
+color:white;
 
 }
 
 .card{
 
-backdrop-filter:blur(25px);
-
 background:
 rgba(255,255,255,.08);
 
-border:1px solid
-rgba(255,255,255,.12);
+backdrop-filter:blur(20px);
 
-border-radius:30px;
-
-padding:22px;
-
-margin-top:16px;
-
-}
-
-.hero{
+border-radius:28px;
 
 padding:26px;
 
 }
 
-.avatar{
+.logo{
 
-width:80px;
+font-size:60px;
 
-height:80px;
-
-border-radius:50%;
-
-background:#2563eb;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:34px;
-
-margin:auto;
+text-align:center;
 
 }
 
@@ -103,25 +64,33 @@ text-align:center;
 
 font-size:34px;
 
-font-weight:900;
+font-weight:800;
 
-margin-top:18px;
+margin-top:10px;
 
 }
 
-.sub{
+.subtitle{
 
 text-align:center;
 
-opacity:.75;
+opacity:.7;
 
 margin-top:8px;
 
 }
 
-.btn{
+.role{
 
-width:100%;
+margin-top:24px;
+
+display:grid;
+
+gap:14px;
+
+}
+
+.role button{
 
 padding:18px;
 
@@ -131,117 +100,52 @@ border-radius:18px;
 
 font-size:18px;
 
-margin-top:24px;
-
-background:
-linear-gradient(
-90deg,
-#2563eb,
-#4f46e5
-);
-
 color:white;
-
-}
-
-.grid{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:14px;
-
-margin-top:18px;
-
-}
-
-.box{
-
-background:
-rgba(255,255,255,.06);
-
-padding:18px;
-
-border-radius:18px;
-
-}
-
-.box h2{
-
-font-size:28px;
-
-}
-
-.progress{
-
-height:12px;
-
-background:
-rgba(255,255,255,.1);
-
-border-radius:999px;
-
-overflow:hidden;
-
-margin-top:14px;
-
-}
-
-.fill{
-
-height:100%;
-
-width:65%;
-
-background:
-linear-gradient(
-90deg,
-#22c55e,
-#3b82f6
-);
-
-}
-
-.rank{
-
-display:flex;
-
-justify-content:space-between;
-
-padding:18px;
-
-margin-top:14px;
-
-background:
-rgba(255,255,255,.06);
-
-border-radius:18px;
-
-}
-
-.categories{
-
-display:flex;
-
-gap:12px;
-
-overflow:auto;
-
-margin-top:14px;
-
-}
-
-.cat{
-
-min-width:120px;
-
-padding:18px;
-
-border-radius:18px;
 
 background:
 rgba(255,255,255,.08);
+
+}
+
+.form{
+
+display:none;
+
+margin-top:20px;
+
+}
+
+input{
+
+width:100%;
+
+padding:18px;
+
+margin-top:12px;
+
+border:none;
+
+border-radius:18px;
+
+}
+
+.submit{
+
+background:#2563EB;
+
+color:white;
+
+font-size:18px;
+
+}
+
+.back{
+
+margin-top:12px;
+
+background:#334155;
+
+color:white;
 
 }
 
@@ -251,9 +155,9 @@ rgba(255,255,255,.08);
 
 <body>
 
-<div class="card hero">
+<div class="card">
 
-<div class="avatar">
+<div class="logo">
 🎓
 </div>
 
@@ -263,121 +167,67 @@ ZIYO TEST
 
 </div>
 
-<div class="sub">
+<div class="subtitle">
 
-Telegram Mini App
+Admin va Talaba tizimi
 
 </div>
 
-<button
-class="btn"
-onclick="start()">
+<div id="home" class="role">
 
-🚀 Testni boshlash
+<button onclick="student()">
+👨‍🎓 Talaba
+</button>
+
+<button onclick="admin()">
+🛡️ Admin
+</button>
+
+</div>
+
+<div id="student" class="form">
+
+<input placeholder="Ism">
+
+<input placeholder="Telefon">
+
+<input placeholder="Parol">
+
+<button class="submit">
+Ro‘yxatdan o‘tish
+</button>
+
+<button
+class="back"
+onclick="back()">
+
+Orqaga
 
 </button>
 
 </div>
 
-<div class="grid">
+<div id="admin" class="form">
 
-<div class="box">
+<input placeholder="Login">
 
-📊
+<input placeholder="Parol">
 
-<h2>1280</h2>
+<button
+class="submit"
+onclick="login()">
 
-Testlar
+Kirish
 
-</div>
+</button>
 
-<div class="box">
+<button
+class="back"
+onclick="back()">
 
-🏆
+Orqaga
 
-<h2>97%</h2>
-
-Natija
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h3>
-
-Progress
-
-</h3>
-
-<div class="progress">
-
-<div class="fill"></div>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h3>
-
-Kategoriyalar
-
-</h3>
-
-<div class="categories">
-
-<div class="cat">
-🤖 AI
-</div>
-
-<div class="cat">
-📱 Android
-</div>
-
-<div class="cat">
-💻 IT
-</div>
-
-<div class="cat">
-📚 Ingliz tili
-</div>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h3>
-
-🏅 Reyting
-
-</h3>
-
-<div class="rank">
-
-<span>
-Humoyiddin
-</span>
-
-<span>
-#1
-</span>
-
-</div>
-
-<div class="rank">
-
-<span>
-Foydalanuvchi
-</span>
-
-<span>
-#2
-</span>
+</button>
 
 </div>
 
@@ -387,10 +237,50 @@ Foydalanuvchi
 
 Telegram.WebApp.expand();
 
-function start(){
+function hide(){
+
+home.style.display="none";
+
+student.style.display="none";
+
+admin.style.display="none";
+
+}
+
+function student(){
+
+hide();
+
+document
+.getElementById("student")
+.style.display="block";
+
+}
+
+function admin(){
+
+hide();
+
+document
+.getElementById("admin")
+.style.display="block";
+
+}
+
+function back(){
+
+student.style.display="none";
+
+admin.style.display="none";
+
+home.style.display="grid";
+
+}
+
+function login(){
 
 alert(
-"Test sahifasi keyingi bosqichda ulanadi 🚀"
+"Keyingi bosqichda superadmin tekshiruvi ulanadi"
 );
 
 }
