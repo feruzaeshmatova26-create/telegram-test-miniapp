@@ -1,43 +1,169 @@
 <!DOCTYPE html>
-<html>
+<html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Ziyo Test</title>
+
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <style>
-body{
-background:#111827;
-color:white;
-font-family:sans-serif;
-text-align:center;
-padding:40px;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
 }
 
-button{
-width:100%;
-padding:16px;
-border:none;
-border-radius:12px;
-background:#2563eb;
+body{
+background:linear-gradient(
+180deg,
+#0f172a,
+#1e293b
+);
+
 color:white;
+padding:20px;
 }
+
+.card{
+background:#1e293b;
+
+padding:25px;
+
+border-radius:20px;
+
+margin-top:40px;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.3);
+}
+
+.logo{
+font-size:48px;
+text-align:center;
+}
+
+.title{
+font-size:32px;
+font-weight:bold;
+
+margin-top:15px;
+
+text-align:center;
+}
+
+.desc{
+
+color:#cbd5e1;
+
+text-align:center;
+
+margin-top:10px;
+
+}
+
+.button{
+
+margin-top:30px;
+
+width:100%;
+
+padding:18px;
+
+border:none;
+
+border-radius:16px;
+
+font-size:18px;
+
+background:#2563eb;
+
+color:white;
+
+}
+
+.stats{
+
+display:flex;
+
+gap:10px;
+
+margin-top:20px;
+
+}
+
+.box{
+
+flex:1;
+
+background:#334155;
+
+padding:15px;
+
+border-radius:14px;
+
+text-align:center;
+
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>Ziyo Test</h1>
+<div class="card">
 
-<p>Telegram Mini App ishladi ✅</p>
+<div class="logo">
+🎓
+</div>
 
-<button onclick="alert('Test boshlandi')">
-Boshlash
+<div class="title">
+ZIYO TEST
+</div>
+
+<div class="desc">
+Bilimingizni sinab ko‘ring
+</div>
+
+<div class="stats">
+
+<div class="box">
+📝<br>
+120+
+</div>
+
+<div class="box">
+🏆<br>
+Reyting
+</div>
+
+</div>
+
+<button
+class="button"
+onclick="startTest()">
+
+TEST BOSHLASH
+
 </button>
 
+</div>
+
 <script>
+
 Telegram.WebApp.expand();
+
+function startTest(){
+
+alert(
+"Test bo‘limi keyin qo‘shiladi 🚀"
+)
+
+}
+
 </script>
 
 </body>
