@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="uz">
-
 <head>
 
 <meta charset="UTF-8">
@@ -24,14 +23,14 @@ body{
 background:
 linear-gradient(
 135deg,
-#0F172A,
-#1E293B,
-#2563EB
+#0f172a,
+#1e293b,
+#2563eb
 );
 
 min-height:100vh;
 
-padding:20px;
+padding:18px;
 
 color:white;
 
@@ -46,7 +45,7 @@ backdrop-filter:blur(20px);
 
 border-radius:28px;
 
-padding:26px;
+padding:24px;
 
 }
 
@@ -64,33 +63,33 @@ text-align:center;
 
 font-size:34px;
 
-font-weight:800;
-
-margin-top:10px;
+font-weight:900;
 
 }
 
-.subtitle{
+.sub{
 
 text-align:center;
 
 opacity:.7;
 
-margin-top:8px;
+margin-top:10px;
 
 }
 
 .role{
 
-margin-top:24px;
-
 display:grid;
 
 gap:14px;
 
+margin-top:25px;
+
 }
 
-.role button{
+button{
+
+width:100%;
 
 padding:18px;
 
@@ -100,18 +99,22 @@ border-radius:18px;
 
 font-size:18px;
 
+}
+
+.primary{
+
+background:#2563eb;
+
 color:white;
+
+}
+
+.secondary{
 
 background:
 rgba(255,255,255,.08);
 
-}
-
-.form{
-
-display:none;
-
-margin-top:20px;
+color:white;
 
 }
 
@@ -119,33 +122,19 @@ input{
 
 width:100%;
 
-padding:18px;
-
-margin-top:12px;
+padding:16px;
 
 border:none;
 
-border-radius:18px;
-
-}
-
-.submit{
-
-background:#2563EB;
-
-color:white;
-
-font-size:18px;
-
-}
-
-.back{
+border-radius:16px;
 
 margin-top:12px;
 
-background:#334155;
+}
 
-color:white;
+.page{
+
+display:none;
 
 }
 
@@ -162,43 +151,60 @@ color:white;
 </div>
 
 <div class="title">
-
 ZIYO TEST
-
 </div>
 
-<div class="subtitle">
-
-Admin va Talaba tizimi
-
+<div class="sub">
+Online Test Platform
 </div>
 
-<div id="home" class="role">
+<div id="home">
 
-<button onclick="student()">
+<div class="role">
+
+<button
+class="secondary"
+onclick="openStudent()">
+
 👨‍🎓 Talaba
+
 </button>
 
-<button onclick="admin()">
+<button
+class="primary"
+onclick="openAdmin()">
+
 🛡️ Admin
+
 </button>
 
 </div>
 
-<div id="student" class="form">
+</div>
+
+<div
+id="student"
+class="page">
 
 <input placeholder="Ism">
 
 <input placeholder="Telefon">
 
-<input placeholder="Parol">
-
-<button class="submit">
-Ro‘yxatdan o‘tish
-</button>
+<input type="password"
+placeholder="Parol">
 
 <button
-class="back"
+class="primary"
+onclick="register()">
+
+Ro‘yxatdan o‘tish
+
+</button>
+
+<br><br>
+
+<button
+class="secondary"
 onclick="back()">
 
 Orqaga
@@ -207,22 +213,32 @@ Orqaga
 
 </div>
 
-<div id="admin" class="form">
+<div
+id="admin"
+class="page">
 
-<input placeholder="Login">
+<input id="login"
+placeholder="Login">
 
-<input placeholder="Parol">
+<input
+id="password"
+
+type="password"
+
+placeholder="Parol">
 
 <button
-class="submit"
+class="primary"
 onclick="login()">
 
 Kirish
 
 </button>
 
+<br><br>
+
 <button
-class="back"
+class="secondary"
 onclick="back()">
 
 Orqaga
@@ -247,23 +263,19 @@ admin.style.display="none";
 
 }
 
-function student(){
+function openStudent(){
 
 hide();
 
-document
-.getElementById("student")
-.style.display="block";
+student.style.display="block";
 
 }
 
-function admin(){
+function openAdmin(){
 
 hide();
 
-document
-.getElementById("admin")
-.style.display="block";
+admin.style.display="block";
 
 }
 
@@ -273,15 +285,82 @@ student.style.display="none";
 
 admin.style.display="none";
 
-home.style.display="grid";
+home.style.display="block";
+
+}
+
+function register(){
+
+alert(
+"Talaba yaratildi ✅"
+);
 
 }
 
 function login(){
 
+let user=
+document
+.getElementById(
+"login"
+).value;
+
+let pass=
+document
+.getElementById(
+"password"
+).value;
+
+if(
+user==="admin"
+&&
+pass==="12345"
+){
+
+document.body.innerHTML=`
+
+<div class='card'>
+
+<h1>
+
+👑 Superadmin
+
+</h1>
+
+<br>
+
+<input
+placeholder='Admin login'>
+
+<input
+placeholder='Parol'>
+
+<button
+class='primary'>
+
+Admin yaratish
+
+</button>
+
+<br><br>
+
+<div>
+
+📊 Statistika
+
+</div>
+
+</div>
+
+`;
+
+}else{
+
 alert(
-"Keyingi bosqichda superadmin tekshiruvi ulanadi"
+"Xato login ❌"
 );
+
+}
 
 }
 
