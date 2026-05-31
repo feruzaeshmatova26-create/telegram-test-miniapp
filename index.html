@@ -15,34 +15,116 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial;
+font-family:system-ui;
 }
 
 body{
-background:#0f172a;
-color:white;
+
+background:
+linear-gradient(
+180deg,
+#0b1220,
+#162033
+);
+
+min-height:100vh;
+
 padding:20px;
+
+color:white;
+
+}
+
+.top{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-bottom:20px;
+
+}
+
+.badge{
+
+background:#1f2937;
+
+padding:10px 16px;
+
+border-radius:999px;
+
 }
 
 .card{
 
-background:#1e293b;
+background:
 
-padding:25px;
+linear-gradient(
+180deg,
+#1e293b,
+#172033
+);
 
-border-radius:20px;
+padding:24px;
 
-margin-top:40px;
+border-radius:28px;
+
+box-shadow:
+0 20px 50px rgba(0,0,0,.35);
+
+}
+
+.logo{
+
+font-size:60px;
+
+text-align:center;
 
 }
 
 .title{
 
-font-size:30px;
+text-align:center;
+
+font-size:34px;
+
+font-weight:800;
+
+margin-top:12px;
+
+}
+
+.sub{
 
 text-align:center;
 
-margin-bottom:20px;
+opacity:.7;
+
+margin-top:8px;
+
+}
+
+.progress{
+
+margin-top:22px;
+
+height:10px;
+
+background:#334155;
+
+border-radius:999px;
+
+overflow:hidden;
+
+}
+
+.fill{
+
+height:100%;
+
+width:25%;
+
+background:#3b82f6;
 
 }
 
@@ -50,23 +132,25 @@ margin-bottom:20px;
 
 font-size:22px;
 
-margin-bottom:25px;
+margin-top:28px;
+
+font-weight:700;
 
 }
 
-button{
+.option{
 
 width:100%;
 
-padding:16px;
+padding:18px;
 
-margin-top:12px;
+margin-top:14px;
 
 border:none;
 
-border-radius:14px;
+border-radius:18px;
 
-background:#2563eb;
+background:#243246;
 
 color:white;
 
@@ -74,15 +158,27 @@ font-size:18px;
 
 }
 
+.option:active{
+
+transform:scale(.98);
+
+}
+
 .result{
+
+display:none;
 
 text-align:center;
 
-font-size:26px;
+padding:20px;
 
-margin-top:30px;
+}
 
-display:none;
+.score{
+
+font-size:60px;
+
+margin-bottom:14px;
 
 }
 
@@ -92,37 +188,69 @@ display:none;
 
 <body>
 
-<div class="card">
+<div class="top">
 
-<div class="title">
-🎓 ZIYO TEST
+<div class="badge">
+📝 Test
 </div>
+
+<div class="badge">
+1 / 10
+</div>
+
+</div>
+
+<div class="card">
 
 <div id="quiz">
 
-<div class="question">
-1. Android kim tomonidan yaratilgan?
+<div class="logo">
+🚀
 </div>
 
-<button onclick="answer(true)">
-A) Google
+<div class="title">
+ZIYO TEST
+</div>
+
+<div class="sub">
+Bilimingizni sinab ko‘ring
+</div>
+
+<div class="progress">
+<div class="fill"></div>
+</div>
+
+<div class="question">
+Android Studio qaysi kompaniyaga tegishli?
+</div>
+
+<button class="option" onclick="finish(true)">
+A • Google
 </button>
 
-<button onclick="answer(false)">
-B) Apple
+<button class="option" onclick="finish(false)">
+B • Apple
 </button>
 
-<button onclick="answer(false)">
-C) Samsung
+<button class="option" onclick="finish(false)">
+C • Telegram
 </button>
 
-<button onclick="answer(false)">
-D) Microsoft
+<button class="option" onclick="finish(false)">
+D • Samsung
 </button>
 
 </div>
 
 <div class="result" id="result">
+
+<div class="score">
+🏆
+</div>
+
+<h2>Natija</h2>
+
+<p id="text"></p>
 
 </div>
 
@@ -132,27 +260,18 @@ D) Microsoft
 
 Telegram.WebApp.expand();
 
-function answer(ok){
+function finish(ok){
 
-let r=document.getElementById("result");
+quiz.style.display="none";
 
-document.getElementById("quiz").style.display="none";
+result.style.display="block";
 
-r.style.display="block";
-
-if(ok){
-
-r.innerHTML=
-"🏆<br><br>To‘g‘ri javob ✅<br><br>Ball: 100";
-
-}
-
-else{
-
-r.innerHTML=
-"❌<br><br>Noto‘g‘ri javob";
-
-}
+text.innerHTML=
+ok
+?
+"100 Ball ✅"
+:
+"Qayta urinib ko‘ring ❌";
 
 }
 
