@@ -2,6 +2,7 @@
 <html lang="uz">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,19 +20,21 @@ font-family:system-ui;
 }
 
 body{
+
 background:
 linear-gradient(
 135deg,
-#0f172a,
-#1e293b,
-#2563eb
+#071226,
+#111827,
+#1d4ed8
 );
 
 min-height:100vh;
 
+color:white;
+
 padding:20px;
 
-color:white;
 }
 
 .card{
@@ -39,11 +42,54 @@ color:white;
 background:
 rgba(255,255,255,.08);
 
-padding:25px;
+border:1px solid
+rgba(255,255,255,.1);
+
+backdrop-filter:blur(18px);
 
 border-radius:28px;
 
-backdrop-filter:blur(20px);
+padding:24px;
+
+}
+
+.logo{
+
+font-size:72px;
+
+text-align:center;
+
+}
+
+.title{
+
+text-align:center;
+
+font-size:34px;
+
+font-weight:900;
+
+margin-top:12px;
+
+}
+
+.sub{
+
+text-align:center;
+
+opacity:.7;
+
+margin-top:8px;
+
+}
+
+.grid{
+
+display:grid;
+
+gap:14px;
+
+margin-top:24px;
 
 }
 
@@ -57,23 +103,35 @@ border:none;
 
 border-radius:18px;
 
-margin-top:12px;
+font-size:18px;
+
+color:white;
 
 }
 
 .primary{
 
-background:#2563eb;
-
-color:white;
+background:#2563EB;
 
 }
 
-.gray{
+.dark{
 
-background:#334155;
+background:#1E293B;
 
-color:white;
+}
+
+.success{
+
+background:#059669;
+
+}
+
+.form{
+
+display:none;
+
+margin-top:20px;
 
 }
 
@@ -91,22 +149,9 @@ margin-top:12px;
 
 }
 
-.page{
+.back{
 
-display:none;
-
-}
-
-.adminItem{
-
-background:
-rgba(255,255,255,.08);
-
-padding:14px;
-
-margin-top:10px;
-
-border-radius:14px;
+margin-top:12px;
 
 }
 
@@ -118,13 +163,33 @@ border-radius:14px;
 
 <div class="card">
 
-<h1>
-🎓 ZIYO TEST
-</h1>
+<div class="logo">
+🎓
+</div>
 
-<br>
+<div class="title">
+
+ZIYO TEST
+
+</div>
+
+<div class="sub">
+
+Online Test Platform
+
+</div>
 
 <div id="home">
+
+<div class="grid">
+
+<button
+class="success"
+onclick="openStudent()">
+
+👨‍🎓 Talaba
+
+</button>
 
 <button
 class="primary"
@@ -135,10 +200,43 @@ onclick="openAdmin()">
 </button>
 
 <button
-class="gray"
-onclick="alert('Talaba keyin ulanadi')">
+class="dark"
+onclick="openSuper()">
 
-👨‍🎓 Talaba
+👑 Superadmin
+
+</button>
+
+</div>
+
+</div>
+
+<div
+id="student"
+class="form">
+
+<input
+placeholder="Ism">
+
+<input
+placeholder="Telefon">
+
+<input
+type="password"
+placeholder="Parol">
+
+<button
+class="success">
+
+Ro‘yxatdan o‘tish
+
+</button>
+
+<button
+class="dark back"
+onclick="back()">
+
+Orqaga
 
 </button>
 
@@ -146,30 +244,55 @@ onclick="alert('Talaba keyin ulanadi')">
 
 <div
 id="admin"
-class="page">
+class="form">
 
 <input
-id="login"
-
 placeholder="Login">
 
 <input
-id="password"
-
 type="password"
-
 placeholder="Parol">
 
 <button
-class="primary"
-onclick="login()">
+class="primary">
 
 Kirish
 
 </button>
 
 <button
-class="gray"
+class="dark back"
+onclick="back()">
+
+Orqaga
+
+</button>
+
+</div>
+
+<div
+id="super"
+class="form">
+
+<input
+id="s1"
+placeholder="Login">
+
+<input
+id="s2"
+type="password"
+placeholder="Parol">
+
+<button
+class="dark"
+onclick="superLogin()">
+
+Kirish
+
+</button>
+
+<button
+class="dark back"
 onclick="back()">
 
 Orqaga
@@ -184,36 +307,65 @@ Orqaga
 
 Telegram.WebApp.expand();
 
-let admins=
-JSON.parse(
-localStorage.getItem(
-"admins"
-)||"[]"
-);
+function hide(){
+
+home.style.display="none";
+
+student.style.display="none";
+
+admin.style.display="none";
+
+super.style.display="none";
+
+}
+
+function openStudent(){
+
+hide();
+
+student.style.display="block";
+
+}
 
 function openAdmin(){
 
-home.style.display="none";
+hide();
 
 admin.style.display="block";
 
 }
 
+function openSuper(){
+
+hide();
+
+super.style.display="block";
+
+}
+
 function back(){
 
+student.style.display="none";
+
 admin.style.display="none";
+
+super.style.display="none";
 
 home.style.display="block";
 
 }
 
-function login(){
+function superLogin(){
 
 let l=
-loginInput();
+document
+.getElementById("s1")
+.value;
 
 let p=
-passwordInput();
+document
+.getElementById("s2")
+.value;
 
 if(
 l==="admin"
@@ -221,50 +373,11 @@ l==="admin"
 p==="12345"
 ){
 
-superPanel();
-
-return;
-
-}
-
-let found=
-admins.find(
-a=>
-a.login===l
-&&
-a.password===p
+alert(
+"Superadmin panel tayyor 🚀"
 );
 
-if(found){
-
-document.body.innerHTML=`
-
-<div class='card'>
-
-<h1>
-
-🛡️ Admin panel
-
-</h1>
-
-<br>
-
-Test yaratish
-<br><br>
-
-<button class='primary'>
-
-+ Test qo'shish
-
-</button>
-
-</div>
-
-`;
-
-return;
-
-}
+}else{
 
 alert(
 "Login xato ❌"
@@ -272,126 +385,10 @@ alert(
 
 }
 
-function loginInput(){
-
-return document
-.getElementById(
-"login"
-).value;
-
-}
-
-function passwordInput(){
-
-return document
-.getElementById(
-"password"
-).value;
-
-}
-
-function superPanel(){
-
-document.body.innerHTML=`
-
-<div class='card'>
-
-<h1>
-
-👑 Superadmin
-
-</h1>
-
-<input
-id='a1'
-placeholder='Admin login'>
-
-<input
-id='a2'
-placeholder='Parol'>
-
-<button
-class='primary'
-onclick='createAdmin()'>
-
-Admin yaratish
-
-</button>
-
-<div id='list'></div>
-
-</div>
-
-`;
-
-render();
-
-}
-
-function createAdmin(){
-
-let login=
-document
-.getElementById(
-"a1"
-).value;
-
-let password=
-document
-.getElementById(
-"a2"
-).value;
-
-admins.push({
-
-login,
-
-password
-
-});
-
-localStorage
-.setItem(
-"admins",
-JSON.stringify(
-admins
-)
-);
-
-render();
-
-}
-
-function render(){
-
-let html="";
-
-admins.forEach(
-a=>{
-
-html+=`
-
-<div
-class='adminItem'>
-
-🛡️ ${a.login}
-
-</div>
-
-`;
-
-});
-
-document
-.getElementById(
-"list"
-).innerHTML=
-html;
-
 }
 
 </script>
 
 </body>
 
-</html>
+  </html>
