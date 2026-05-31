@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>Ziyo Test</title>
 
@@ -18,17 +19,13 @@ font-family:Arial;
 }
 
 body{
-background:linear-gradient(
-180deg,
-#0f172a,
-#1e293b
-);
-
+background:#0f172a;
 color:white;
 padding:20px;
 }
 
 .card{
+
 background:#1e293b;
 
 padding:25px;
@@ -37,118 +34,97 @@ border-radius:20px;
 
 margin-top:40px;
 
-box-shadow:
-0 10px 30px rgba(0,0,0,.3);
-}
-
-.logo{
-font-size:48px;
-text-align:center;
 }
 
 .title{
-font-size:32px;
-font-weight:bold;
 
-margin-top:15px;
-
-text-align:center;
-}
-
-.desc{
-
-color:#cbd5e1;
+font-size:30px;
 
 text-align:center;
 
-margin-top:10px;
+margin-bottom:20px;
 
 }
 
-.button{
+.question{
 
-margin-top:30px;
+font-size:22px;
+
+margin-bottom:25px;
+
+}
+
+button{
 
 width:100%;
 
-padding:18px;
+padding:16px;
+
+margin-top:12px;
 
 border:none;
 
-border-radius:16px;
-
-font-size:18px;
+border-radius:14px;
 
 background:#2563eb;
 
 color:white;
 
-}
-
-.stats{
-
-display:flex;
-
-gap:10px;
-
-margin-top:20px;
+font-size:18px;
 
 }
 
-.box{
-
-flex:1;
-
-background:#334155;
-
-padding:15px;
-
-border-radius:14px;
+.result{
 
 text-align:center;
+
+font-size:26px;
+
+margin-top:30px;
+
+display:none;
 
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="card">
 
-<div class="logo">
-🎓
-</div>
-
 <div class="title">
-ZIYO TEST
+🎓 ZIYO TEST
 </div>
 
-<div class="desc">
-Bilimingizni sinab ko‘ring
+<div id="quiz">
+
+<div class="question">
+1. Android kim tomonidan yaratilgan?
 </div>
 
-<div class="stats">
-
-<div class="box">
-📝<br>
-120+
-</div>
-
-<div class="box">
-🏆<br>
-Reyting
-</div>
-
-</div>
-
-<button
-class="button"
-onclick="startTest()">
-
-TEST BOSHLASH
-
+<button onclick="answer(true)">
+A) Google
 </button>
+
+<button onclick="answer(false)">
+B) Apple
+</button>
+
+<button onclick="answer(false)">
+C) Samsung
+</button>
+
+<button onclick="answer(false)">
+D) Microsoft
+</button>
+
+</div>
+
+<div class="result" id="result">
+
+</div>
 
 </div>
 
@@ -156,15 +132,15 @@ TEST BOSHLASH
 
 Telegram.WebApp.expand();
 
-function startTest(){
+function answer(ok){
 
-alert(
-"Test bo‘limi keyin qo‘shiladi 🚀"
-)
+let r=document.getElementById("result");
 
-}
+document.getElementById("quiz").style.display="none";
 
-</script>
+r.style.display="block";
 
-</body>
-</html>
+if(ok){
+
+r.innerHTML=
+"🏆<br><br>To‘g‘ri javob ✅<br><br>Ball:
